@@ -93,6 +93,10 @@ resource "google_project" "main" {
   app_engine = "${local.app_engine_config["${local.app_engine_enabled ? "enabled" : "disabled"}"]}"
 
   depends_on = ["null_resource.preconditions"]
+
+  lifecycle = {
+    ignore_changes = ["project_id"]
+  }
 }
 
 /******************************************
